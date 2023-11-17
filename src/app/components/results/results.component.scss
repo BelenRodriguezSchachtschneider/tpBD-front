@@ -1,0 +1,16 @@
+
+.results {
+    grid-area: results;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+
+}
+
+.table>:not(caption)>*>*{
+    background-color: var(--color-two);
+    border-color: black;
+    border-style: solid;
+}

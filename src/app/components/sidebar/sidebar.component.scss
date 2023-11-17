@@ -1,0 +1,24 @@
+.sidebar {
+    grid-area: sidebar;
+    background-color: var(--color-one);
+    padding: 10px;
+    margin: 10px;
+    border-color: #000028;
+    border-style: solid;
+    border-radius: 10px;
+    align-self: center;
+    color: var(--color-five);
+}
+
+h3 {
+    display: flex;
+    justify-content: center;
+
+}
+
+.buttons {
+    display: flex;
+    justify-content:space-evenly;
+    margin-top: 10px;
+    
+}

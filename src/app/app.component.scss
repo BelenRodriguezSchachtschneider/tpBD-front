@@ -1,0 +1,9 @@
+
+main {
+ display: grid;
+ grid-template: 100% / 30% 70%;
+ grid-template-areas:
+ "sidebar"
+ "results";
+}
+
