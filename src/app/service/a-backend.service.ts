@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable, lastValueFrom } from 'rxjs'
+import {  lastValueFrom } from 'rxjs'
 import { Sector, SectorJson } from '../domain/sector'
 import { Repositor, RepositorJson } from '../domain/repositor'
+//import { Producto, ProductoJson } from '../domain/producto'
 
 
 @Injectable({
@@ -25,12 +26,19 @@ export class ABackendService {
     return repositorJson.map((repositorJson) => Repositor.fromJson(repositorJson))
   }
 
-  // async getAllProductos(){
-  //   const cards$ = this.httpclient.get<CardJson[]>('http://localhost:9000/card-search')
-  //   const cardJson = await lastValueFrom(cards$)
-  //   return cardJson.map((cardJson) => Card.fromJson(cardJson))
-  // }
+  async getAllProductos(){
+    const producto$ = this.httpclient.get<any[]>('http://localhost:8080/firstcharge')
+    const productoJson = await lastValueFrom(producto$)
+    return productoJson.map(  item => {
+      const [id_producto, nombre_producto, nombre_gondola, desc_presentacion] = item.split(',').map((value: string) => value.trim());
+      return { id_producto, nombre_producto, nombre_gondola, desc_presentacion };
+    })
+  }
 
+
+  //(productoJson) => Producto.fromJson(productoJson)
+  
+  
   // async getBySector(id:number){
   //   const cards$ = this.httpclient.get<CardJson[]>('http://localhost:9000/card-search')
   //   const cardJson = await lastValueFrom(cards$)
