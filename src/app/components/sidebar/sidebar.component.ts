@@ -1,4 +1,5 @@
 import { Component, ErrorHandler, Input, OnInit, Output } from '@angular/core';
+import { Repositor } from 'src/app/domain/repositor';
 import { Sector } from 'src/app/domain/sector';
 import { ABackendService } from 'src/app/service/a-backend.service';
 
@@ -13,7 +14,9 @@ export class SidebarComponent extends ErrorHandler implements OnInit{
 
   radioChecked: string = ""
   sectores: Sector[] = []
-  opcionSeleccionada: Sector | undefined 
+  repositores: Repositor [] = []
+  opcionSeleccionada1: Sector | undefined 
+  opcionSeleccionada2: Repositor | undefined
 
   constructor(private abackendService: ABackendService){
     super()
@@ -24,6 +27,7 @@ export class SidebarComponent extends ErrorHandler implements OnInit{
   async ngOnInit() {
     try{
       this.sectores = await this.abackendService.getAllSectores()
+      this.repositores = await this.abackendService.getAllRepositores()
       console.log("ngOnInit = " + this.sectores)
     }
     catch (error){

@@ -7,7 +7,7 @@
     </label>
     <select [disabled]="radioChecked !== 'sector'"
     id="sectores" 
-    [(ngModel)]="opcionSeleccionada"
+    [(ngModel)]="opcionSeleccionada1"
     class="form-select" aria-label="Default select example first-color">
       <option selected>Seleccione sector</option>
        <option  *ngFor="let sector of sectores" [value]="sector">{{sector.desc_sector}}</option>
@@ -20,11 +20,12 @@
     <label class="form-check-label" for="repositor">
       Repositor:
     </label>
-    <select [disabled]="radioChecked !== 'repositor'" class="form-select" aria-label="Default select example">
+    <select [disabled]="radioChecked !== 'repositor'" 
+    id="repositores" 
+    [(ngModel)]="opcionSeleccionada2"
+    class="form-select" aria-label="Default select example">
       <option selected>Seleccione repositor</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
+      <option  *ngFor="let repositor of repositores" [value]="repositor">{{repositor.nombre}}</option>
     </select>
   </div>
   <div class="buttons">

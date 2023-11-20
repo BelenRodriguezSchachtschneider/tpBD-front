@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable, lastValueFrom } from 'rxjs'
 import { Sector, SectorJson } from '../domain/sector'
+import { Repositor, RepositorJson } from '../domain/repositor'
 
 
 @Injectable({
@@ -18,11 +19,11 @@ export class ABackendService {
     return sectorJson.map((sectorJson) => Sector.fromJson(sectorJson))
   }
 
-  // async getAllRepositores(){
-  //   const cards$ = this.httpclient.get<CardJson[]>('http://localhost:9000/card-search')
-  //   const cardJson = await lastValueFrom(cards$)
-  //   return cardJson.map((cardJson) => Card.fromJson(cardJson))
-  // }
+  async getAllRepositores(){
+    const repositores$ = this.httpclient.get<RepositorJson[]>('http://localhost:8080/arrayrepositors')
+    const repositorJson = await lastValueFrom(repositores$)
+    return repositorJson.map((repositorJson) => Repositor.fromJson(repositorJson))
+  }
 
   // async getAllProductos(){
   //   const cards$ = this.httpclient.get<CardJson[]>('http://localhost:9000/card-search')
