@@ -12,8 +12,8 @@ import { ABackendService } from 'src/app/service/a-backend.service';
 export class SidebarComponent extends ErrorHandler implements OnInit{
 
   radioChecked: string = ""
-  sectores: Sector[] = []  
-  opcionSeleccionada: Sector | undefined  
+  sectores: Sector[] = []
+  opcionSeleccionada: Sector | undefined 
 
   constructor(private abackendService: ABackendService){
     super()
@@ -21,10 +21,10 @@ export class SidebarComponent extends ErrorHandler implements OnInit{
 
   handleRadioChange() { }
 
-  ngOnInit() {
+  async ngOnInit() {
     try{
-      this.abackendService.getAllSectores().subscribe((sectors: Sector[])=>{this.sectores=sectors})
-      console.log(this.sectores)
+      this.sectores = await this.abackendService.getAllSectores()
+      console.log("ngOnInit = " + this.sectores)
     }
     catch (error){
       this.handleError(error)

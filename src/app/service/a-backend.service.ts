@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable, lastValueFrom } from 'rxjs'
-import { Sector } from '../domain/sector'
+import { Sector, SectorJson } from '../domain/sector'
 
 
 @Injectable({
@@ -12,8 +12,10 @@ export class ABackendService {
   constructor(private httpclient: HttpClient) {}
  
 
-  getAllSectores(): Observable<Sector[]>{
-    return this.httpclient.get<Sector[]>('http://localhost:8080/arraysectors')
+  async getAllSectores(){
+    const sectores$ = this.httpclient.get<SectorJson[]>('http://localhost:8080/arraysectors')
+    const sectorJson = await lastValueFrom(sectores$)
+    return sectorJson.map((sectorJson) => Sector.fromJson(sectorJson))
   }
 
   // async getAllRepositores(){
