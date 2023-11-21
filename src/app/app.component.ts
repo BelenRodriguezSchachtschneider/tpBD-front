@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tpbd';
+
+  opcionSeleccionada: { opcion1: number; opcion2: number; } = {opcion1: 0, opcion2:0}
+
+  onOpcionSeleccionada(opciones: { opcion1: number, opcion2: number }) {
+    this.opcionSeleccionada = opciones;
+  }
 }

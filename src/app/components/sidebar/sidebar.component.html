@@ -10,7 +10,7 @@
     [(ngModel)]="opcionSeleccionada1"
     class="form-select" aria-label="Default select example first-color">
       <option selected>Seleccione sector</option>
-       <option  *ngFor="let sector of sectores" [value]="sector">{{sector.desc_sector}}</option>
+       <option  *ngFor="let sector of sectores" [value]="sector.id_sector">{{sector.desc_sector}}</option>
     </select>
 
 
@@ -25,11 +25,13 @@
     [(ngModel)]="opcionSeleccionada2"
     class="form-select" aria-label="Default select example">
       <option selected>Seleccione repositor</option>
-      <option  *ngFor="let repositor of repositores" [value]="repositor">{{repositor.nombre}}</option>
+      <option  *ngFor="let repositor of repositores" [value]="repositor.id_repositor">{{repositor.nombre}}</option>
     </select>
   </div>
   <div class="buttons">
-      <button type="button" class="btn btn-outline-light">Buscar</button>
+      <button type="button" class="btn btn-outline-light" (click)="llenarTabla()">Buscar</button>
       <button type="button" class="btn btn-outline-light">Cancelar</button>
   </div>
   </section>
+
+  <!-- (change)="onOpcionSeleccionadaChange()" -->

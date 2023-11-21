@@ -1,4 +1,4 @@
-import { Component, ErrorHandler, OnInit } from '@angular/core';
+import { Component, ErrorHandler, EventEmitter, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Producto } from 'src/app/domain/producto';
 import { ABackendService } from 'src/app/service/a-backend.service';
 
@@ -10,7 +10,7 @@ import { ABackendService } from 'src/app/service/a-backend.service';
 export class ResultsComponent extends ErrorHandler implements OnInit{
 
   productos: any[] = [];
-
+ 
   constructor(private abackendService: ABackendService) { 
     super()
   }
@@ -23,5 +23,14 @@ export class ResultsComponent extends ErrorHandler implements OnInit{
     catch (error){
       this.handleError(error)
     }
+
   }
+  // async getProductosBySector (filtro : number){
+  //   this.abackendService.getAllProductosBySector(filtro)
+  // }
+
+  // async getProductosByRepositor (filtro : number){
+  //   this.abackendService.getAllProductosBySector(filtro)
+  // }
+
 }

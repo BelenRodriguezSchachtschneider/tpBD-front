@@ -35,6 +35,24 @@ export class ABackendService {
     })
   }
 
+  async getAllProductosBySector(idsector:number){
+    const producto$ = this.httpclient.get<any[]>(`http://localhost:8080/sectorcharge/${idsector}`)
+    const productoJson = await lastValueFrom(producto$)
+    return productoJson.map(  item => {
+      const [id_producto, nombre_producto, nombre_gondola, desc_presentacion] = item.split(',').map((value: string) => value.trim());
+      return { id_producto, nombre_producto, nombre_gondola, desc_presentacion };
+    })
+  }
+
+  async getAllProductosByRepositor(idrepositor:number){
+    const producto$ = this.httpclient.get<any[]>('http://localhost:8080/repositorcharge/' + idrepositor)
+    const productoJson = await lastValueFrom(producto$)
+    return productoJson.map(  item => {
+      const [id_producto, nombre_producto, nombre_gondola, desc_presentacion] = item.split(',').map((value: string) => value.trim());
+      return { id_producto, nombre_producto, nombre_gondola, desc_presentacion };
+    })
+  }
+
 
   //(productoJson) => Producto.fromJson(productoJson)
   
