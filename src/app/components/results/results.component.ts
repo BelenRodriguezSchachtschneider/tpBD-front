@@ -20,14 +20,11 @@ export class ResultsComponent extends ErrorHandler implements OnInit, OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
     this.llenarTabla()
-    throw new Error('Method not implemented.');
   }
 
   async ngOnInit() {
     try{
       this.productos = await this.abackendService.getAllProductos()
-
-      console.log("ngOnInit productos = " + this.productos)
     }
     catch (error){
       this.handleError(error)
@@ -37,11 +34,10 @@ export class ResultsComponent extends ErrorHandler implements OnInit, OnChanges{
   async llenarTabla(){
     if ( this.searchResults.radioCheckedvalue == 'sector') {
        this.productos = await this.abackendService.getAllProductosBySector (this.searchResults.opcionSeleccionada1value)
-        console.log("estoy en sector y la opción seleccionada es: " + this.searchResults.opcionSeleccionada1value)
     }
-    else {
+    else if (this.searchResults.radioCheckedvalue == 'repositor'){
       this.productos = await this.abackendService.getAllProductosByRepositor (this.searchResults.opcionSeleccionada2value)
-      console.log("estoy en repositor y la opción seleccionada es: " + this.searchResults.opcionSeleccionada2value)
     }
+    else {this.productos = await this.abackendService.getAllProductos()}
   }
 }

@@ -1,4 +1,4 @@
-import { Component, ErrorHandler, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, ErrorHandler, EventEmitter,OnInit, Output} from '@angular/core';
 import { Repositor } from 'src/app/domain/repositor';
 import { Sector } from 'src/app/domain/sector';
 import { ABackendService } from 'src/app/service/a-backend.service';
@@ -38,7 +38,6 @@ export class SidebarComponent extends ErrorHandler implements OnInit{
     try{
       this.sectores = await this.abackendService.getAllSectores()
       this.repositores = await this.abackendService.getAllRepositores()
-      console.log("ngOnInit = " + this.sectores)
     }
     catch (error){
       this.handleError(error)
@@ -50,13 +49,11 @@ export class SidebarComponent extends ErrorHandler implements OnInit{
     this.searchEvent.emit(value)
   }
 
-  // onOpcionSeleccionadaChange( ){
-  //   this.opcionSeleccionada.emit({
-  //     opcion1: this.opcionSeleccionada1,
-  //     opcion2: this.opcionSeleccionada2
-  //   });
-  //   console.log("valor elegido " + this.opcionSeleccionada)
-  // }
-
-
+  clearResults(){
+    this.radioChecked = ""
+    this.opcionSeleccionada1 = 0
+    this.opcionSeleccionada2 = 0
+    this.emitSearch()
+  }
+  
 }
