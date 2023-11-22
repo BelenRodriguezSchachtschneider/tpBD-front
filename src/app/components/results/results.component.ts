@@ -33,10 +33,10 @@ export class ResultsComponent extends ErrorHandler implements OnInit, OnChanges{
 
   async llenarTabla(){
     if ( this.searchResults.radioCheckedvalue == 'sector') {
-       this.productos = await this.abackendService.getAllProductosBySector (this.searchResults.opcionSeleccionada1value)
+       this.productos = await this.abackendService.getAllProductosBySector (Number(this.searchResults.opcionSeleccionada1value))
     }
     else if (this.searchResults.radioCheckedvalue == 'repositor'){
-      this.productos = await this.abackendService.getAllProductosByRepositor (this.searchResults.opcionSeleccionada2value)
+      this.productos = await this.abackendService.getAllProductosByRepositor (Number(this.searchResults.opcionSeleccionada2value))
     }
     else {this.productos = await this.abackendService.getAllProductos()}
   }

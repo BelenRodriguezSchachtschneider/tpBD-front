@@ -5,8 +5,8 @@ import { ABackendService } from 'src/app/service/a-backend.service';
 
 export interface SearchOptions {
   radioCheckedvalue: string
-  opcionSeleccionada1value: number 
-  opcionSeleccionada2value: number 
+  opcionSeleccionada1value: number | null 
+  opcionSeleccionada2value: number | null
 }
 @Component({
   selector: 'app-sidebar',
@@ -20,8 +20,8 @@ export class SidebarComponent extends ErrorHandler implements OnInit{
   radioChecked: string = "" 
   sectores: Sector[] = []
   repositores: Repositor [] = []
-  opcionSeleccionada1: number = 0
-  opcionSeleccionada2: number = 0 
+  opcionSeleccionada1: number | null = null
+  opcionSeleccionada2: number | null = null
 
   @Output() searchEvent = new EventEmitter<SearchOptions>();
 
@@ -30,8 +30,8 @@ export class SidebarComponent extends ErrorHandler implements OnInit{
   }
 
   handleRadioChange(value : string) { 
-    if (value == 'sector'){this.opcionSeleccionada2 = 0}
-    else if (value == 'repositor'){this.opcionSeleccionada1 = 0}
+    if (value == 'sector'){this.opcionSeleccionada2 = null}
+    else if (value == 'repositor'){this.opcionSeleccionada1 = null}
   }
 
   async ngOnInit() {
@@ -51,9 +51,9 @@ export class SidebarComponent extends ErrorHandler implements OnInit{
 
   clearResults(){
     this.radioChecked = ""
-    this.opcionSeleccionada1 = 0
-    this.opcionSeleccionada2 = 0
+    this.opcionSeleccionada1 = null
+    this.opcionSeleccionada2 = null
     this.emitSearch()
   }
-  
+
 }

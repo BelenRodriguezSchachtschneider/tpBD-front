@@ -1,7 +1,7 @@
 <section class="sidebar">
     <h3>Filtros</h3>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name ="selector" value="sector" id="sector" [(ngModel)]="radioChecked" (change)="handleRadioChange('sector')">
+    <input class="form-check-input" placeholder="Seleccione sector" autocomplete="off" type="radio" name ="selector" value="sector" min="0" id="sector" [(ngModel)]="radioChecked" (change)="handleRadioChange('sector')">
     <label class="form-check-label" for="sector">
       Sector:
     </label>
@@ -9,14 +9,13 @@
     id="sectores" 
     [(ngModel)]="opcionSeleccionada1"
     class="form-select" aria-label="Default select example first-color">
-      <option selected>Seleccione sector</option>
+        <!-- <option selected>Seleccione sector</option> -->
        <option  *ngFor="let sector of sectores" [value]="sector.id_sector">{{sector.desc_sector}}</option>
     </select>
 
-
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name ="selector" value="repositor" id="repositor" [(ngModel)]="radioChecked" (change)="handleRadioChange('repositor')">
+    <input class="form-check-input" placeholder="Seleccione repositor" autocomplete="off" type="radio" name ="selector" value="repositor" min="0" id="repositor" [(ngModel)]="radioChecked" (change)="handleRadioChange('repositor')">
     <label class="form-check-label" for="repositor">
       Repositor:
     </label>
@@ -24,7 +23,7 @@
     id="repositores" 
     [(ngModel)]="opcionSeleccionada2"
     class="form-select" aria-label="Default select example">
-      <option selected>Seleccione repositor</option>
+    <!-- <option selected>Seleccione repositor</option> -->
       <option  *ngFor="let repositor of repositores" [value]="repositor.id_repositor">{{repositor.nombre}}</option>
     </select>
   </div>
