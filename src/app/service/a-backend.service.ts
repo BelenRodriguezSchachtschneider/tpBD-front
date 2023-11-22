@@ -54,7 +54,6 @@ export class ABackendService {
   }
 
 
-  //(productoJson) => Producto.fromJson(productoJson)
   
   
   // async getBySector(id:number){

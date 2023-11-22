@@ -1,12 +1,12 @@
-import { Component, ErrorHandler, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ErrorHandler, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Repositor } from 'src/app/domain/repositor';
 import { Sector } from 'src/app/domain/sector';
 import { ABackendService } from 'src/app/service/a-backend.service';
 
 export interface SearchOptions {
   radioCheckedvalue: string
-  opcionSeleccionada1value: number
-  opcionSeleccionada2value: number
+  opcionSeleccionada1value: number 
+  opcionSeleccionada2value: number 
 }
 @Component({
   selector: 'app-sidebar',
@@ -20,8 +20,8 @@ export class SidebarComponent extends ErrorHandler implements OnInit{
   radioChecked: string = "" 
   sectores: Sector[] = []
   repositores: Repositor [] = []
-  opcionSeleccionada1!: number
-  opcionSeleccionada2!: number
+  opcionSeleccionada1: number = 0
+  opcionSeleccionada2: number = 0 
 
   @Output() searchEvent = new EventEmitter<SearchOptions>();
 
@@ -29,7 +29,10 @@ export class SidebarComponent extends ErrorHandler implements OnInit{
     super()
   }
 
-  handleRadioChange() { }
+  handleRadioChange(value : string) { 
+    if (value == 'sector'){this.opcionSeleccionada2 = 0}
+    else if (value == 'repositor'){this.opcionSeleccionada1 = 0}
+  }
 
   async ngOnInit() {
     try{
