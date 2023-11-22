@@ -14,3 +14,12 @@
     border-color: black;
     border-style: solid;
 }
+.empty-container {
+    grid-area: main;
+    background-color: var(--color-background);
+    color: var(--color-one);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 0.5em;
+}

@@ -42,4 +42,6 @@ export class ResultsComponent extends ErrorHandler implements OnInit, OnChanges{
     else {this.productos = await this.abackendService.getAllProductos()
     }
   }
+
+
 }
