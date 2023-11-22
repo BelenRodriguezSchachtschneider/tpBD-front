@@ -1,6 +1,6 @@
 <router-outlet></router-outlet>
 
 <main>
-  <app-sidebar></app-sidebar>
-  <app-results></app-results>
+  <app-sidebar (searchEvent)="toResult($event)"></app-sidebar>
+  <app-results [searchResults]="sidebarToResults"></app-results>
 </main>

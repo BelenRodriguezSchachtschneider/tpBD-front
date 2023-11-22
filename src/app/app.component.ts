@@ -1,3 +1,4 @@
+import { SearchOptions } from './components/sidebar/sidebar.component';
 import { Component } from '@angular/core';
 
 @Component({
@@ -5,12 +6,14 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
   title = 'tpbd';
 
-  opcionSeleccionada: { opcion1: number; opcion2: number; } = {opcion1: 0, opcion2:0}
+  sidebarToResults!: SearchOptions
 
-  onOpcionSeleccionada(opciones: { opcion1: number, opcion2: number }) {
-    this.opcionSeleccionada = opciones;
+  toResult(value:SearchOptions){
+      this.sidebarToResults = value
   }
+
 }

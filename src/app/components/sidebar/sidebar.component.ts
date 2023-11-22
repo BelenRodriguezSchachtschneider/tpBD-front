@@ -1,9 +1,13 @@
-import { lastValueFrom } from 'rxjs';
 import { Component, ErrorHandler, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Repositor } from 'src/app/domain/repositor';
 import { Sector } from 'src/app/domain/sector';
 import { ABackendService } from 'src/app/service/a-backend.service';
 
+export interface SearchOptions {
+  radioCheckedvalue: string
+  opcionSeleccionada1value: number
+  opcionSeleccionada2value: number
+}
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -13,12 +17,13 @@ import { ABackendService } from 'src/app/service/a-backend.service';
 
 export class SidebarComponent extends ErrorHandler implements OnInit{
 
-  radioChecked: string = ""
+  radioChecked: string = "" 
   sectores: Sector[] = []
   repositores: Repositor [] = []
   opcionSeleccionada1!: number
   opcionSeleccionada2!: number
-  @Output() opcionSeleccionada: EventEmitter<{  opcion1: number,  opcion2: number }> = new EventEmitter();
+
+  @Output() searchEvent = new EventEmitter<SearchOptions>();
 
   constructor(private abackendService: ABackendService){
     super()
@@ -37,22 +42,18 @@ export class SidebarComponent extends ErrorHandler implements OnInit{
     }
   }
 
-  onOpcionSeleccionadaChange( ){
-    this.opcionSeleccionada.emit({
-      opcion1: this.opcionSeleccionada1,
-      opcion2: this.opcionSeleccionada2
-    });
-    console.log("valor elegido " + this.opcionSeleccionada)
+  emitSearch() {
+    const value:SearchOptions = {radioCheckedvalue: this.radioChecked, opcionSeleccionada1value: this.opcionSeleccionada1, opcionSeleccionada2value: this.opcionSeleccionada2}
+    this.searchEvent.emit(value)
   }
 
-  llenarTabla(){
-    if ( this.radioChecked == 'sector') {
-        this.abackendService.getAllProductosBySector (this.opcionSeleccionada1)
-        console.log("estoy en sector y la opción seleccionada es: " + this.opcionSeleccionada1)
-    }
-    else {
-      this.abackendService.getAllProductosByRepositor (this.opcionSeleccionada2)
-      console.log("estoy en repositor y la opción seleccionada es: " + this.opcionSeleccionada2)
-    }
-  }
+  // onOpcionSeleccionadaChange( ){
+  //   this.opcionSeleccionada.emit({
+  //     opcion1: this.opcionSeleccionada1,
+  //     opcion2: this.opcionSeleccionada2
+  //   });
+  //   console.log("valor elegido " + this.opcionSeleccionada)
+  // }
+
+
 }
