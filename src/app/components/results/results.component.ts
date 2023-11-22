@@ -1,6 +1,7 @@
 import { Component, ErrorHandler, EventEmitter, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ABackendService } from 'src/app/service/a-backend.service';
 import { SearchOptions } from '../sidebar/sidebar.component';
+import { Producto } from 'src/app/domain/producto';
 
 @Component({
   selector: 'app-results',
@@ -9,7 +10,7 @@ import { SearchOptions } from '../sidebar/sidebar.component';
 })
 export class ResultsComponent extends ErrorHandler implements OnInit, OnChanges{
 
-  productos: any[] = [];
+  productos: Producto[] = [];
 
   @Input() searchResults!: SearchOptions
  
@@ -24,7 +25,7 @@ export class ResultsComponent extends ErrorHandler implements OnInit, OnChanges{
 
   async ngOnInit() {
     try{
-      this.productos = await this.abackendService.getAllProductos()
+      this.productos = await this.abackendService.getAllProductos() 
     }
     catch (error){
       this.handleError(error)
@@ -38,6 +39,7 @@ export class ResultsComponent extends ErrorHandler implements OnInit, OnChanges{
     else if (this.searchResults.radioCheckedvalue == 'repositor'){
       this.productos = await this.abackendService.getAllProductosByRepositor (Number(this.searchResults.opcionSeleccionada2value))
     }
-    else {this.productos = await this.abackendService.getAllProductos()}
+    else {this.productos = await this.abackendService.getAllProductos()
+    }
   }
 }

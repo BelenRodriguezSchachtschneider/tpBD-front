@@ -52,20 +52,4 @@ export class ABackendService {
       return { id_producto, nombre_producto, nombre_gondola, desc_presentacion };
     })
   }
-
-
-  
-  
-  // async getBySector(id:number){
-  //   const cards$ = this.httpclient.get<CardJson[]>('http://localhost:9000/card-search')
-  //   const cardJson = await lastValueFrom(cards$)
-  //   return cardJson.map((cardJson) => Card.fromJson(cardJson))
-  // }
-
-  // async getAllRepositor(id:number){
-  //   const cards$ = this.httpclient.get<CardJson[]>('http://localhost:9000/card-search')
-  //   const cardJson = await lastValueFrom(cards$)
-  //   return cardJson.map((cardJson) => Card.fromJson(cardJson))
-  // }
-
 }

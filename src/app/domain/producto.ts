@@ -1,10 +1,3 @@
-// export interface Producto {
-//     id_producto: number;
-//     nombre_producto: string;
-//     nombre_gondola: string;
-//     desc_presentacion: string;
-// }
-
 export class Producto {
    
     constructor(
